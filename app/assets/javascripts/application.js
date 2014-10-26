@@ -1,16 +1,49 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+/*
+ ==== Standard ====
+ = require jquery
+ = require bootstrap
+
+ ==== Angular ====
+ = require angular
+
+ ==== Angular Plugins ====
+ = require lodash
+ = require restangular
+ = require angular-ui-router
+
+ = require_self
+ = require_tree ./angular/templates
+ = require_tree .
+ */
+
+var APP = angular.module('Tutorial', [
+  'ui.router',
+  'templates',
+  'restangular'
+]);
+
+APP.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'RestangularProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) {
+  RestangularProvider.setBaseUrl("/api");
+  RestangularProvider.setDefaultRequestParams({format: "json"});
+
+  $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise("/widgets");
+
+  $stateProvider
+    .state('widgets', {
+      url: "/widgets",
+      abstract: true,
+      template: "<div ui-view></div>"
+    })
+    .state('widgets.list', {
+      url: "",
+      templateUrl: "widgets/index.html",
+      controller: "WidgetsListController"
+    }).
+    state('widgets.show', {
+      url: "/widgets/:id",
+      templateUrl: "widgets/show.html",
+      controller: "WidgetsShowController"
+    });
+}]);
