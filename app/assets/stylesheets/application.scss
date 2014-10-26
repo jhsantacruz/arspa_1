@@ -1,0 +1,17 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap";
+
+body {
+	margin-top: 10px;
+}
+form {
+  padding: 15px;
+}
+
+.form-controls {
+  margin-bottom: 10px;
+}
