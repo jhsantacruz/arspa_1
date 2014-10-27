@@ -3,3 +3,26 @@
   pre {{widget.content}}
 
   button.btn.btn-primary ui-sref="widgets.list" Go Back
+
+  form.form-inline role="form" 
+  .form-group
+    label.sr-only for="exampleInputEmail2"  Email address
+    input#exampleInputEmail2.form-control placeholder=("Enter email") type="email" 
+  .form-group
+    .input-group
+      .input-group-addon @
+      input.form-control placeholder=("Enter email") type="email" 
+  .form-group
+    label.sr-only for="exampleInputPassword2"  Password
+    input#exampleInputPassword2.form-control placeholder="Password" type="password" 
+  .checkbox
+    label
+      input type="checkbox" 
+        | Remember me
+  button.btn.btn-default type="submit"  Sign in
+
+  .progress
+  	.progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%;") 
+    | 60%
+
+
